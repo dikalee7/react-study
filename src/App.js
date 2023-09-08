@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Expenses from "./components/expense/Expenses";
 import NewExpense from "./components/newExpense/NewExpense";
 
@@ -34,7 +34,7 @@ function App() {
     <div>
       <NewExpense
         onAddExpense={(expense) => {
-          setExpenses((prevObj) => [...prevObj, expense]);
+          setExpenses((prevObj) => [expense, ...prevObj]);
         }}
       />
       <Expenses expenses={expenses} />
