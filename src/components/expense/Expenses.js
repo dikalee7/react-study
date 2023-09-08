@@ -5,16 +5,21 @@ import Card from "../ui/Card";
 import ExpensesFilter from "./ExpensesFilter";
 
 function Expenses(props) {
-  const [filteredExpense, setFilteredExpense] = useState([...props.expenses]);
-  const [filterYear, setFilterYear] = useState("2022");
+  const [filterYear, setFilterYear] = useState("2021");
 
-  useEffect(() => {
-    setFilteredExpense(
-      props.expenses.filter(
-        (obj) => obj.date.getFullYear().toString() === filterYear
-      )
-    );
-  }, [props.expenses, filterYear]);
+  // const [filteredExpense, setFilteredExpense] = useState([...props.expenses]);
+  // useEffect(() => {
+  //   setFilteredExpense(
+  //     props.expenses.filter(
+  //       (obj) => obj.date.getFullYear().toString() === filterYear
+  //     )
+  //   );
+  // }, [props.expenses, filterYear]);
+
+  //props.expenses와 filterYear 상태값에 의존하는 변수로 별도 state로 지정하지 않아도 변경감지가 됨(파생된 상태 개념)
+  const filteredExpense = props.expenses.filter(
+    (obj) => obj.date.getFullYear().toString() === filterYear
+  );
 
   const changeFilterHandler = (filterYear) => {
     setFilterYear(filterYear);
